@@ -12,6 +12,7 @@ public class EstimateLogIn {
 	
 	public static void main(String[] args) {
 	   Connection conn = null;
+	   
 	   try{    
 	      Class.forName("com.mysql.jdbc.Driver");
 	      System.out.println("Connecting to a selected database...");
@@ -21,7 +22,7 @@ public class EstimateLogIn {
 	      se.printStackTrace();
 	   }catch(Exception e){
 	      e.printStackTrace();
-	   }finally{
+	   }finally{		   
 	      try{
 	         if(conn!=null)
 	            conn.close();
