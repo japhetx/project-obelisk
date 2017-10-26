@@ -27,6 +27,8 @@ public class EstimateLogIn extends ConnectDatabase{
 		  } else {
 			System.out.println("Invalid Username and Password!");
 		  }
+		  
+		  scan.close();
 		  rs.close();
       } catch (SQLException e) {
     	  e.printStackTrace();
