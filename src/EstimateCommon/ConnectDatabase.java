@@ -12,7 +12,7 @@ public class ConnectDatabase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-	   String url = "jdbc:mysql://localhost:3306/systemdb1";
+	   String url = "jdbc:mysql://localhost:3306/systemdb";
 	   String name = "root";
 	   String password = "";
 	   
