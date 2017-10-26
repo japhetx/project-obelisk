@@ -1,4 +1,4 @@
-package EstimateCommon;
+/*package EstimateCommon;
 
 import java.sql.*;
 import java.util.Scanner;
@@ -47,7 +47,5 @@ public class EstimateShowProjectInfo extends ConnectDatabase {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
-
-}
+} */
