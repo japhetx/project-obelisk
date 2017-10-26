@@ -1,3 +1,4 @@
+/*
 package EstimateCommon;
 
 import java.sql.*;
@@ -26,11 +27,11 @@ public class EstimateLogIn extends ConnectDatabase{
 		  } else {
 			System.out.println("Invalid Username and Password!");
 		  }
-		  
+		  rs.close();
       } catch (SQLException e) {
     	  e.printStackTrace();
       }
 	      
 	   System.out.println("Goodbye!");
 	}
-}
+} */
