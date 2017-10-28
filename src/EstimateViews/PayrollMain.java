@@ -275,7 +275,7 @@ public class PayrollMain extends JFrame {
 		pnlWorkers.setBackground(Color.WHITE);
 		tbPane.addTab("Workers", null, pnlWorkers, null);
 		
-		JScrollPane scrollPane = new JScrollPane();
+		JScrollPane scrWorkers = new JScrollPane();
 		
 		JButton btnDelete = new JButton("Delete");
 		
@@ -288,7 +288,7 @@ public class PayrollMain extends JFrame {
 				.addGroup(gl_pnlWorkers.createSequentialGroup()
 					.addGap(45)
 					.addGroup(gl_pnlWorkers.createParallelGroup(Alignment.TRAILING)
-						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 658, GroupLayout.PREFERRED_SIZE)
+						.addComponent(scrWorkers, GroupLayout.PREFERRED_SIZE, 658, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_pnlWorkers.createSequentialGroup()
 							.addComponent(btnNew)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -301,7 +301,7 @@ public class PayrollMain extends JFrame {
 			gl_pnlWorkers.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_pnlWorkers.createSequentialGroup()
 					.addGap(41)
-					.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+					.addComponent(scrWorkers, GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
 					.addGap(18)
 					.addGroup(gl_pnlWorkers.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnDelete)
@@ -358,23 +358,23 @@ public class PayrollMain extends JFrame {
 		tblWorkers.getColumnModel().getColumn(0).setResizable(false);
 		tblWorkers.getColumnModel().getColumn(1).setResizable(false);
 		tblWorkers.getColumnModel().getColumn(2).setResizable(false);
-		scrollPane.setViewportView(tblWorkers);
+		scrWorkers.setViewportView(tblWorkers);
 		pnlWorkers.setLayout(gl_pnlWorkers);
 		
 		JPanel pnlReport = new JPanel();
 		pnlReport.setBackground(Color.WHITE);
 		tbPane.addTab("Report", null, pnlReport, null);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Attendance", "Payroll"}));
+		JComboBox cmbSelectReport = new JComboBox();
+		cmbSelectReport.setModel(new DefaultComboBoxModel(new String[] {"Attendance", "Payroll"}));
 		
-		JButton btnNewButton = new JButton("Show Report");
+		JButton btnShowReport = new JButton("Show Report");
 		
 		JLabel lblReportView = new JLabel("Report View");
 		
-		JScrollPane scrollPane_1 = new JScrollPane();
+		JScrollPane scrReportView = new JScrollPane();
 		
-		JButton btnSendViaEmail = new JButton("Send via Email");
+		JButton btnEmail = new JButton("Send via Email");
 		
 		JButton btnPrint = new JButton("Print");
 		
@@ -387,17 +387,17 @@ public class PayrollMain extends JFrame {
 					.addGroup(gl_pnlReport.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblReportView)
 						.addGroup(gl_pnlReport.createSequentialGroup()
-							.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
+							.addComponent(cmbSelectReport, GroupLayout.PREFERRED_SIZE, 484, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnNewButton))
+							.addComponent(btnShowReport))
 						.addGroup(gl_pnlReport.createParallelGroup(Alignment.TRAILING)
 							.addGroup(gl_pnlReport.createSequentialGroup()
 								.addComponent(btnSave)
 								.addGap(18)
 								.addComponent(btnPrint)
 								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(btnSendViaEmail))
-							.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 626, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(btnEmail))
+							.addComponent(scrReportView, GroupLayout.PREFERRED_SIZE, 626, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(76, Short.MAX_VALUE))
 		);
 		gl_pnlReport.setVerticalGroup(
@@ -405,22 +405,22 @@ public class PayrollMain extends JFrame {
 				.addGroup(gl_pnlReport.createSequentialGroup()
 					.addGap(50)
 					.addGroup(gl_pnlReport.createParallelGroup(Alignment.BASELINE)
-						.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnNewButton))
+						.addComponent(cmbSelectReport, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnShowReport))
 					.addGap(29)
 					.addComponent(lblReportView)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrollPane_1, GroupLayout.PREFERRED_SIZE, 393, GroupLayout.PREFERRED_SIZE)
+					.addComponent(scrReportView, GroupLayout.PREFERRED_SIZE, 393, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addGroup(gl_pnlReport.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnSendViaEmail)
+						.addComponent(btnEmail)
 						.addComponent(btnPrint)
 						.addComponent(btnSave))
 					.addContainerGap(32, Short.MAX_VALUE))
 		);
 		
-		JPanel panel = new JPanel();
-		scrollPane_1.setViewportView(panel);
+		JPanel pnlReporView = new JPanel();
+		scrReportView.setViewportView(pnlReporView);
 		pnlReport.setLayout(gl_pnlReport);
 		
 	}
