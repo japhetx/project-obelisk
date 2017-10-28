@@ -1,7 +1,9 @@
-/*
-package EstimateCommon;
+/*package EstimateCommon;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 public class EstimateLogIn extends ConnectDatabase{
@@ -17,6 +19,7 @@ public class EstimateLogIn extends ConnectDatabase{
 		  System.out.println("Password: ");
 		  String InputPassword = scan.nextLine();
 		
+    	  
 		  stmt = conn.createStatement();  
 		  String sql = "SELECT * FROM useraccount " +
 		           "WHERE UserName = '" + InputUserName + "' AND UserPassword = '" + InputPassword +"'";
@@ -36,4 +39,4 @@ public class EstimateLogIn extends ConnectDatabase{
 	      
 	   System.out.println("Goodbye!");
 	}
-} */
+}*/
