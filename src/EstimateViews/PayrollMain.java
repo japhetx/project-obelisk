@@ -18,6 +18,12 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTable;
 import java.awt.SystemColor;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -81,8 +87,14 @@ public class PayrollMain extends JFrame {
 		
 		txtDate = new JTextField();
 		txtDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtDate.setText("Saturday, 28 October 2017");
 		txtDate.setColumns(10);
+		
+		// SHOW CURRENT DATE
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		Date date = new Date();
+		txtDate.setText(ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
+		
 		
 		JButton btnCurrentDate = new JButton("Current Date");
 		
