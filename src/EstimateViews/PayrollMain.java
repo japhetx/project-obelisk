@@ -31,6 +31,11 @@ import java.awt.Component;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
 
 public class PayrollMain extends JFrame {
@@ -46,6 +51,10 @@ public class PayrollMain extends JFrame {
 	private JButton btnSearch;
 	private JButton btnAttendanceSave;
 	public static String Input;
+	private static Connection conn;
+	private static Statement stmt;
+	private static String sql;
+	private static ResultSet rs;
 
 	public static void main(String[] args) {
 		try {
@@ -71,6 +80,27 @@ public class PayrollMain extends JFrame {
 	}
 
 	private void initComponents() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");  
+			conn = DriverManager.getConnection(  
+			"jdbc:mysql://localhost:3306/systemdb","root","");  
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		try {
+			Statement stmt = conn.createStatement();
+			String sql;
+			ResultSet rs;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 828, 734);
 		ctpMainPane = new JPanel();
@@ -90,6 +120,34 @@ public class PayrollMain extends JFrame {
 		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
 		btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String GetDate = txtDate.getText().toString();
+				try {
+					sql = "SELECT workersattendance.*, workersinfo.* FROM workersattendance "
+							+ "INNER JOIN workersinfo ON workersattendance.WorkersID = workersinfo.WorkersID "
+							+ "WHERE workersattendance.AttendDate = '"+ GetDate+"'";
+					rs = stmt.executeQuery(sql);
+					
+					while(rs.next()){
+						String WorkersName = rs.getString("WorkersID");
+						int WorkAM = rs.getInt("WorkAM");
+						if (WorkAM == 1){ 
+							
+						}
+						int WorkPM = rs.getInt("WorkPM");
+						
+						// Show to table
+						
+					}
+					
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 
 		
 		txtDate = new JTextField();
@@ -119,9 +177,10 @@ public class PayrollMain extends JFrame {
 				System.out.println(Name);
 				
 				Input = "HI";
+				boolean test = Boolean.TRUE;
 				tblAttendance.setModel(new DefaultTableModel(
 						new Object[][] {
-							{Input, Boolean.FALSE, Boolean.TRUE},
+							{Input, test, Boolean.TRUE},
 						},
 						new String[] {
 							"Workers Name", "AM", "PM"
