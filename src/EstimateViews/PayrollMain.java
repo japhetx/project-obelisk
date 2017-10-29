@@ -44,10 +44,12 @@ public class PayrollMain extends JFrame {
 	private JTable tblWorkers;
 	private JButton btnCurrentDate;
 	private JButton btnSearch;
+	private JButton btnAttendanceSave;
+	public static String Input;
 
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
@@ -81,7 +83,7 @@ public class PayrollMain extends JFrame {
 		ctpMainPane.add(tbPane);
 		
 		JPanel pnlAttendance = new JPanel();
-		pnlAttendance.setBackground(Color.WHITE);
+		pnlAttendance.setBackground(new Color(179, 200, 219));
 		tbPane.addTab("Attendance", null, pnlAttendance, null);
 		
 		JLabel lblDate = new JLabel("Date");
@@ -109,7 +111,45 @@ public class PayrollMain extends JFrame {
 		
 		JScrollPane scrAttendance = new JScrollPane();
 		
-		JButton btnAttendanceSave = new JButton("Save");
+		btnAttendanceSave = new JButton("Save");
+		btnAttendanceSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String Name = null;
+				Name = (String) tblAttendance.getValueAt(0, 0);
+				System.out.println(Name);
+				
+				Input = "HI";
+				tblAttendance.setModel(new DefaultTableModel(
+						new Object[][] {
+							{Input, Boolean.FALSE, Boolean.TRUE},
+						},
+						new String[] {
+							"Workers Name", "AM", "PM"
+						}
+					){
+					/**
+					 * 
+					 */
+					private static final long serialVersionUID = 1L;
+					@SuppressWarnings("rawtypes")
+					Class[] columnTypes = new Class[] {
+						Object.class, Boolean.class, Boolean.class
+					};
+					@SuppressWarnings({ "unchecked", "rawtypes" })
+					public Class getColumnClass(int columnIndex) {
+						return columnTypes[columnIndex];
+					}
+					boolean[] columnEditables = new boolean[] {
+						false, true, true
+					};
+					public boolean isCellEditable(int row, int column) {
+						return columnEditables[column];
+					}
+				});
+				
+			}
+		});
+		
 		GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
 		gl_pnlAttendance.setHorizontalGroup(
 			gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
@@ -177,15 +217,15 @@ public class PayrollMain extends JFrame {
 				return columnEditables[column];
 			}
 		});
-		
 		tblAttendance.getColumnModel().getColumn(0).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(1).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(2).setResizable(false);
 		scrAttendance.setViewportView(tblAttendance);
 		pnlAttendance.setLayout(gl_pnlAttendance);
 		
+		
 		JPanel pnlPayroll = new JPanel();
-		pnlPayroll.setBackground(Color.WHITE);
+		pnlPayroll.setBackground(new Color(179, 200, 219));
 		tbPane.addTab("Payroll", null, pnlPayroll, null);
 		
 		JLabel lblPeriodCovered = new JLabel("Period Covered");
@@ -284,7 +324,7 @@ public class PayrollMain extends JFrame {
 		pnlPayroll.setLayout(gl_pnlPayroll);
 		
 		JPanel pnlWorkers = new JPanel();
-		pnlWorkers.setBackground(Color.WHITE);
+		pnlWorkers.setBackground(new Color(179, 200, 219));
 		tbPane.addTab("Workers", null, pnlWorkers, null);
 		
 		JScrollPane scrWorkers = new JScrollPane();
@@ -374,7 +414,7 @@ public class PayrollMain extends JFrame {
 		pnlWorkers.setLayout(gl_pnlWorkers);
 		
 		JPanel pnlReport = new JPanel();
-		pnlReport.setBackground(Color.WHITE);
+		pnlReport.setBackground(new Color(179, 200, 219));
 		tbPane.addTab("Report", null, pnlReport, null);
 		
 		JComboBox cmbSelectReport = new JComboBox();
@@ -448,9 +488,9 @@ public class PayrollMain extends JFrame {
 				txtDate.setText(dmy);
 				
 				// FIN
-				String Name = null;
-				Name = (String) tblAttendance.getValueAt(0, 0);
-				System.out.println(Name);
+				
+				
+				
 			}
 		});
 		
