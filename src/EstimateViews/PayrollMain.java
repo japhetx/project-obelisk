@@ -30,6 +30,8 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PayrollMain extends JFrame {
 
@@ -40,6 +42,8 @@ public class PayrollMain extends JFrame {
 	private JTextField txtEndDate;
 	private JTable tblAPayroll;
 	private JTable tblWorkers;
+	private JButton btnCurrentDate;
+	private JButton btnSearch;
 
 	public static void main(String[] args) {
 		try {
@@ -83,7 +87,8 @@ public class PayrollMain extends JFrame {
 		JLabel lblDate = new JLabel("Date");
 		lblDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		
-		JButton btnGo = new JButton("Go");
+		btnSearch = new JButton("Search");
+
 		
 		txtDate = new JTextField();
 		txtDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -91,30 +96,38 @@ public class PayrollMain extends JFrame {
 		
 		// SHOW CURRENT DATE
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		Date date = new Date();
-		txtDate.setText(ZonedDateTime.now().format(DateTimeFormatter.RFC_1123_DATE_TIME));
+		Date myDate = new Date();
+		SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String dmy = dmyFormat.format(myDate);
+		txtDate.setText(dmy);
+		
+		// FIN
 		
 		
-		JButton btnCurrentDate = new JButton("Current Date");
+		btnCurrentDate = new JButton("Current Date");
+
 		
 		JScrollPane scrAttendance = new JScrollPane();
+		
+		JButton btnAttendanceSave = new JButton("Save");
 		GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
 		gl_pnlAttendance.setHorizontalGroup(
-			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
+			gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_pnlAttendance.createSequentialGroup()
-					.addGap(50)
+					.addContainerGap(50, Short.MAX_VALUE)
 					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
 						.addGroup(gl_pnlAttendance.createSequentialGroup()
 							.addComponent(lblDate)
 							.addGap(20)
 							.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE)
 							.addGap(9)
-							.addComponent(btnGo, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
 							.addGap(9)
-							.addComponent(btnCurrentDate)))
-					.addGap(34))
+							.addComponent(btnCurrentDate))
+						.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnAttendanceSave)
+							.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)))
+					.addGap(36))
 		);
 		gl_pnlAttendance.setVerticalGroup(
 			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
@@ -127,57 +140,44 @@ public class PayrollMain extends JFrame {
 						.addGroup(gl_pnlAttendance.createSequentialGroup()
 							.addGap(1)
 							.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnGo)
+						.addComponent(btnSearch)
 						.addComponent(btnCurrentDate))
 					.addGap(28)
-					.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 475, GroupLayout.PREFERRED_SIZE)
-					.addGap(24))
+					.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 435, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(btnAttendanceSave)
+					.addGap(19))
 		);
 		
 		tblAttendance = new JTable();
 		tblAttendance.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
+				{"Japhet", Boolean.FALSE, Boolean.TRUE},
 			},
 			new String[] {
 				"Workers Name", "AM", "PM"
 			}
 		) {
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] {
+				Object.class, Boolean.class, Boolean.class
+			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
 			boolean[] columnEditables = new boolean[] {
-				false, false, false
+				false, true, true
 			};
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		});
+		
 		tblAttendance.getColumnModel().getColumn(0).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(1).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(2).setResizable(false);
@@ -438,7 +438,22 @@ public class PayrollMain extends JFrame {
 	}
 
 	private void createEvents() {
-		// TODO Auto-generated method stub
+		btnCurrentDate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// SHOW CURRENT DATE
+				
+				Date myDate = new Date();
+				SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
+				String dmy = dmyFormat.format(myDate);
+				txtDate.setText(dmy);
+				
+				// FIN
+				String Name = null;
+				Name = (String) tblAttendance.getValueAt(0, 0);
+				System.out.println(Name);
+			}
+		});
+		
 		
 	}
 }
