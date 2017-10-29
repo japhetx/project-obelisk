@@ -191,80 +191,160 @@ public class PayrollMain extends JFrame {
 				txtDate.setColumns(10);
 				txtDate.setText(dmy);
 				
-			}
-		});
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(179, 200, 219));
-		panel.setBorder(new TitledBorder(null, "Menu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		
-		GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
-		gl_pnlAttendance.setHorizontalGroup(
-			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlAttendance.createSequentialGroup()
-					.addContainerGap(74, Short.MAX_VALUE)
-					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnAttendanceSave)
-						.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.TRAILING, false)
-							.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
-							.addGroup(gl_pnlAttendance.createSequentialGroup()
-								.addComponent(lblDate)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(txtDate)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnCurrentDate))))
-					.addGap(66))
-				.addGroup(gl_pnlAttendance.createSequentialGroup()
-					.addGap(148)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(119, Short.MAX_VALUE))
-		);
-		gl_pnlAttendance.setVerticalGroup(
-			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_pnlAttendance.createSequentialGroup()
-					.addGap(21)
-					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(23)
-					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.BASELINE)
-							.addComponent(btnCurrentDate)
-							.addComponent(btnSearch))
-						.addGroup(gl_pnlAttendance.createSequentialGroup()
-							.addGap(1)
-							.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 435, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnAttendanceSave)
-					.addContainerGap(36, Short.MAX_VALUE))
-		);
-		
-		tblAttendance = new JTable();
-		tblAttendance.setShowHorizontalLines(true);
-		tblAttendance.setShowVerticalLines(true);
-		tblAttendance.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Workers Name", "AM", "PM"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, Boolean.class, Boolean.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		tblAttendance.getColumnModel().getColumn(0).setResizable(false);
-		tblAttendance.getColumnModel().getColumn(1).setResizable(false);
-		tblAttendance.getColumnModel().getColumn(2).setResizable(false);
-		scrAttendance.setViewportView(tblAttendance);
-		pnlAttendance.setLayout(gl_pnlAttendance);
+				// FIN
+				
+				
+				btnCurrentDate = new JButton("Current Date");
+				
+						
+						JScrollPane scrAttendance = new JScrollPane();
+						
+						btnAttendanceSave = new JButton("Save");
+						btnAttendanceSave.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								String Name = null;
+								Name = (String) tblAttendance.getValueAt(0, 0);
+								System.out.println(Name);
+								
+								Input = "HI";
+								boolean test = Boolean.TRUE;
+								tblAttendance.setModel(new DefaultTableModel(
+										new Object[][] {
+											{Input, test, Boolean.TRUE},
+										},
+										new String[] {
+											"Workers Name", "AM", "PM"
+										}
+									){
+									/**
+									 * 
+									 */
+									private static final long serialVersionUID = 1L;
+									@SuppressWarnings("rawtypes")
+									Class[] columnTypes = new Class[] {
+										Object.class, Boolean.class, Boolean.class
+									};
+									@SuppressWarnings({ "unchecked", "rawtypes" })
+									public Class getColumnClass(int columnIndex) {
+										return columnTypes[columnIndex];
+									}
+									boolean[] columnEditables = new boolean[] {
+										false, true, true
+									};
+									public boolean isCellEditable(int row, int column) {
+										return columnEditables[column];
+									}
+								});
+								
+							}
+						});
+						
+						JPanel panel = new JPanel();
+						panel.setBackground(new Color(179, 200, 219));
+						panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(59, 59, 59)));
+						
+						GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
+						gl_pnlAttendance.setHorizontalGroup(
+							gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_pnlAttendance.createSequentialGroup()
+									.addContainerGap(75, Short.MAX_VALUE)
+									.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
+										.addGroup(Alignment.TRAILING, gl_pnlAttendance.createSequentialGroup()
+											.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
+												.addGroup(Alignment.TRAILING, gl_pnlAttendance.createParallelGroup(Alignment.TRAILING, false)
+													.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
+													.addGroup(gl_pnlAttendance.createSequentialGroup()
+														.addComponent(lblDate)
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 445, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+														.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+														.addPreferredGap(ComponentPlacement.RELATED)
+														.addComponent(btnCurrentDate)))
+												.addGroup(Alignment.TRAILING, gl_pnlAttendance.createSequentialGroup()
+													.addPreferredGap(ComponentPlacement.RELATED, 625, GroupLayout.PREFERRED_SIZE)
+													.addComponent(btnAttendanceSave)
+													.addGap(1)))
+											.addGap(65))
+										.addGroup(Alignment.TRAILING, gl_pnlAttendance.createSequentialGroup()
+											.addComponent(panel, GroupLayout.PREFERRED_SIZE, 402, GroupLayout.PREFERRED_SIZE)
+											.addGap(209))))
+						);
+						gl_pnlAttendance.setVerticalGroup(
+							gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, gl_pnlAttendance.createSequentialGroup()
+									.addContainerGap(38, Short.MAX_VALUE)
+									.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGap(34)
+									.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.BASELINE)
+										.addComponent(btnCurrentDate)
+										.addComponent(btnSearch)
+										.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+										.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 357, GroupLayout.PREFERRED_SIZE)
+									.addGap(13)
+									.addComponent(btnAttendanceSave)
+									.addGap(53))
+						);
+						
+						JButton btnAttendance = new JButton("Attendance");
+						
+						JButton btnPayroll = new JButton("Payroll");
+						
+						JButton btnWorkers = new JButton("Workers");
+						
+						JButton btnReport = new JButton("Report");
+						GroupLayout gl_panel = new GroupLayout(panel);
+						gl_panel.setHorizontalGroup(
+							gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+									.addContainerGap(112, Short.MAX_VALUE)
+									.addComponent(btnAttendance)
+									.addGap(5)
+									.addComponent(btnPayroll)
+									.addGap(5)
+									.addComponent(btnWorkers)
+									.addGap(5)
+									.addComponent(btnReport)
+									.addGap(84))
+						);
+						gl_panel.setVerticalGroup(
+							gl_panel.createParallelGroup(Alignment.LEADING)
+								.addGroup(Alignment.TRAILING, gl_panel.createSequentialGroup()
+									.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+										.addComponent(btnAttendance)
+										.addComponent(btnPayroll)
+										.addComponent(btnWorkers)
+										.addComponent(btnReport))
+									.addContainerGap())
+						);
+						gl_panel.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
+						panel.setLayout(gl_panel);
+						
+						tblAttendance = new JTable();
+						tblAttendance.setShowHorizontalLines(true);
+						tblAttendance.setShowVerticalLines(true);
+						tblAttendance.setModel(new DefaultTableModel(
+							new Object[][] {
+							},
+							new String[] {
+								"Workers Name", "AM", "PM"
+							}
+						) {
+							Class[] columnTypes = new Class[] {
+								String.class, Boolean.class, Boolean.class
+							};
+							public Class getColumnClass(int columnIndex) {
+								return columnTypes[columnIndex];
+							}
+						});
+						tblAttendance.getColumnModel().getColumn(0).setResizable(false);
+						tblAttendance.getColumnModel().getColumn(1).setResizable(false);
+						tblAttendance.getColumnModel().getColumn(2).setResizable(false);
+						scrAttendance.setViewportView(tblAttendance);
+						pnlAttendance.setLayout(gl_pnlAttendance);
 		
 		
 		JPanel pnlPayroll = new JPanel();
