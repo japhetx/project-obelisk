@@ -1,6 +1,7 @@
 package EstimateViews;
 
 import java.awt.BorderLayout;
+import java.sql.*;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -51,10 +52,10 @@ public class PayrollMain extends JFrame {
 	private JButton btnSearch;
 	private JButton btnAttendanceSave;
 	public static String Input;
-	private static Connection conn;
-	private static Statement stmt;
-	private static String sql;
-	private static ResultSet rs;
+	public static Connection conn;
+	public static Statement stmt;
+	public static String sql;
+	public static ResultSet rs;
 
 	public static void main(String[] args) {
 		try {
@@ -93,9 +94,7 @@ public class PayrollMain extends JFrame {
 		}
 		
 		try {
-			Statement stmt = conn.createStatement();
-			String sql;
-			ResultSet rs;
+			stmt = conn.createStatement();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -123,6 +122,7 @@ public class PayrollMain extends JFrame {
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String GetDate = txtDate.getText().toString();
+				System.out.println(GetDate);
 				try {
 					sql = "SELECT workersattendance.*, workersinfo.* FROM workersattendance "
 							+ "INNER JOIN workersinfo ON workersattendance.WorkersID = workersinfo.WorkersID "
@@ -130,13 +130,31 @@ public class PayrollMain extends JFrame {
 					rs = stmt.executeQuery(sql);
 					
 					while(rs.next()){
-						String WorkersName = rs.getString("WorkersID");
+						String WorkersName = rs.getString("WorkerName");
+						System.out.println(WorkersName);
 						int WorkAM = rs.getInt("WorkAM");
+						boolean AM;
+						boolean PM;
 						if (WorkAM == 1){ 
-							
+							AM = Boolean.TRUE;
+						} else {
+							AM = Boolean.FALSE;
 						}
-						int WorkPM = rs.getInt("WorkPM");
 						
+						int WorkPM = rs.getInt("WorkPM");
+						if (WorkPM == 1){ 
+							PM = Boolean.TRUE;
+						} else {
+							PM = Boolean.FALSE;
+						}
+						
+						System.out.println(AM);
+						System.out.println(PM);
+
+						// Clear Table
+						DefaultTableModel model = (DefaultTableModel)tblAttendance.getModel();
+						model.setRowCount(0);
+						model.addRow(new Object[]{WorkersName, AM, PM});
 						// Show to table
 						
 					}
@@ -251,31 +269,11 @@ public class PayrollMain extends JFrame {
 		tblAttendance = new JTable();
 		tblAttendance.setModel(new DefaultTableModel(
 			new Object[][] {
-				{"Japhet", Boolean.FALSE, Boolean.TRUE},
 			},
 			new String[] {
 				"Workers Name", "AM", "PM"
 			}
-		) {
-			/**
-			 * 
-			 */
-			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				Object.class, Boolean.class, Boolean.class
-			};
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-			boolean[] columnEditables = new boolean[] {
-				false, true, true
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+		));
 		tblAttendance.getColumnModel().getColumn(0).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(1).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(2).setResizable(false);
