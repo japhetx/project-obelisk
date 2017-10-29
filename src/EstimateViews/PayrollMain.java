@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JTabbedPane;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -38,6 +39,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.JSeparator;
+import javax.swing.JToolBar;
 
 public class PayrollMain extends JFrame {
 
@@ -73,6 +83,7 @@ public class PayrollMain extends JFrame {
 				}
 			}
 		});
+		
 	}
 
 	public PayrollMain() {
@@ -101,17 +112,18 @@ public class PayrollMain extends JFrame {
 		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 828, 734);
+		setBounds(100, 100, 828, 664);
 		ctpMainPane = new JPanel();
 		ctpMainPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(ctpMainPane);
 		ctpMainPane.setLayout(null);
 		
 		JTabbedPane tbPane = new JTabbedPane(JTabbedPane.TOP);
-		tbPane.setBounds(16, 15, 772, 643);
+		tbPane.setBounds(-6, -32, 821, 648);
 		ctpMainPane.add(tbPane);
 		
 		JPanel pnlAttendance = new JPanel();
+		pnlAttendance.setBorder(null);
 		pnlAttendance.setBackground(new Color(179, 200, 219));
 		tbPane.addTab("Attendance", null, pnlAttendance, null);
 		
@@ -227,43 +239,53 @@ public class PayrollMain extends JFrame {
 			}
 		});
 		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(179, 200, 219));
+		panel.setBorder(new TitledBorder(null, "Menu", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		
 		GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
 		gl_pnlAttendance.setHorizontalGroup(
-			gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
+			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlAttendance.createSequentialGroup()
-					.addContainerGap(50, Short.MAX_VALUE)
-					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnlAttendance.createSequentialGroup()
-							.addComponent(lblDate)
-							.addGap(20)
-							.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 395, GroupLayout.PREFERRED_SIZE)
-							.addGap(9)
-							.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
-							.addGap(9)
-							.addComponent(btnCurrentDate))
-						.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
-							.addComponent(btnAttendanceSave)
-							.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)))
-					.addGap(36))
+					.addContainerGap(74, Short.MAX_VALUE)
+					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
+						.addComponent(btnAttendanceSave)
+						.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.TRAILING, false)
+							.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
+							.addGroup(gl_pnlAttendance.createSequentialGroup()
+								.addComponent(lblDate)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(txtDate)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 84, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnCurrentDate))))
+					.addGap(66))
+				.addGroup(gl_pnlAttendance.createSequentialGroup()
+					.addGap(148)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 554, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(119, Short.MAX_VALUE))
 		);
 		gl_pnlAttendance.setVerticalGroup(
 			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlAttendance.createSequentialGroup()
-					.addGap(53)
+					.addGap(21)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(23)
 					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnlAttendance.createSequentialGroup()
-							.addGap(4)
-							.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.BASELINE)
+							.addComponent(btnCurrentDate)
+							.addComponent(btnSearch))
 						.addGroup(gl_pnlAttendance.createSequentialGroup()
 							.addGap(1)
-							.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE))
-						.addComponent(btnSearch)
-						.addComponent(btnCurrentDate))
-					.addGap(28)
+							.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+								.addComponent(lblDate, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrAttendance, GroupLayout.PREFERRED_SIZE, 435, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(btnAttendanceSave)
-					.addGap(19))
+					.addContainerGap(36, Short.MAX_VALUE))
 		);
 		
 		tblAttendance = new JTable();
@@ -307,34 +329,35 @@ public class PayrollMain extends JFrame {
 		JScrollPane scrPayroll = new JScrollPane();
 		GroupLayout gl_pnlPayroll = new GroupLayout(pnlPayroll);
 		gl_pnlPayroll.setHorizontalGroup(
-			gl_pnlPayroll.createParallelGroup(Alignment.LEADING)
+			gl_pnlPayroll.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_pnlPayroll.createSequentialGroup()
-					.addGap(47)
-					.addGroup(gl_pnlPayroll.createParallelGroup(Alignment.LEADING)
-						.addComponent(scrPayroll, GroupLayout.PREFERRED_SIZE, 666, GroupLayout.PREFERRED_SIZE)
-						.addGroup(gl_pnlPayroll.createSequentialGroup()
-							.addComponent(lblPeriodCovered)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(txtBeginDate, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
-							.addGap(12)
-							.addComponent(txtEndDate, GroupLayout.PREFERRED_SIZE, 275, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(94, Short.MAX_VALUE))
+					.addContainerGap(80, Short.MAX_VALUE)
+					.addComponent(scrPayroll, GroupLayout.PREFERRED_SIZE, 666, GroupLayout.PREFERRED_SIZE)
+					.addGap(75))
+				.addGroup(Alignment.LEADING, gl_pnlPayroll.createSequentialGroup()
+					.addGap(83)
+					.addComponent(lblPeriodCovered)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addComponent(txtBeginDate, GroupLayout.PREFERRED_SIZE, 254, GroupLayout.PREFERRED_SIZE)
+					.addGap(12)
+					.addComponent(txtEndDate, GroupLayout.PREFERRED_SIZE, 297, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(78, Short.MAX_VALUE))
 		);
 		gl_pnlPayroll.setVerticalGroup(
 			gl_pnlPayroll.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlPayroll.createSequentialGroup()
 					.addGroup(gl_pnlPayroll.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnlPayroll.createSequentialGroup()
-							.addGap(50)
+							.addGap(55)
 							.addGroup(gl_pnlPayroll.createParallelGroup(Alignment.BASELINE)
 								.addComponent(lblPeriodCovered)
 								.addComponent(txtBeginDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_pnlPayroll.createSequentialGroup()
-							.addGap(49)
+							.addGap(54)
 							.addComponent(txtEndDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(scrPayroll, GroupLayout.PREFERRED_SIZE, 497, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(27, Short.MAX_VALUE))
+					.addContainerGap(109, Short.MAX_VALUE))
 		);
 		
 		tblAPayroll = new JTable();
