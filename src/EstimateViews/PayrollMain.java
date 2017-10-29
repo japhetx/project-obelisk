@@ -112,7 +112,7 @@ public class PayrollMain extends JFrame {
 		}
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 828, 664);
+		setBounds(100, 100, 828, 634);
 		ctpMainPane = new JPanel();
 		ctpMainPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(ctpMainPane);
@@ -121,6 +121,12 @@ public class PayrollMain extends JFrame {
 		JTabbedPane tbPane = new JTabbedPane(JTabbedPane.TOP);
 		tbPane.setBounds(-6, -32, 821, 648);
 		ctpMainPane.add(tbPane);
+		
+		// SHOW CURRENT DATE
+		
+		Date myDate = new Date();
+		SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String dmy = dmyFormat.format(myDate);
 		
 		JPanel pnlAttendance = new JPanel();
 		pnlAttendance.setBorder(null);
@@ -178,63 +184,12 @@ public class PayrollMain extends JFrame {
 				}
 			}
 		});
-
 		
-		txtDate = new JTextField();
-		txtDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtDate.setColumns(10);
-		
-		// SHOW CURRENT DATE
-		
-		Date myDate = new Date();
-		SimpleDateFormat dmyFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String dmy = dmyFormat.format(myDate);
-		txtDate.setText(dmy);
-		
-		// FIN
-		
-		
-		btnCurrentDate = new JButton("Current Date");
-
-		
-		JScrollPane scrAttendance = new JScrollPane();
-		
-		btnAttendanceSave = new JButton("Save");
-		btnAttendanceSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String Name = null;
-				Name = (String) tblAttendance.getValueAt(0, 0);
-				System.out.println(Name);
 				
-				Input = "HI";
-				boolean test = Boolean.TRUE;
-				tblAttendance.setModel(new DefaultTableModel(
-						new Object[][] {
-							{Input, test, Boolean.TRUE},
-						},
-						new String[] {
-							"Workers Name", "AM", "PM"
-						}
-					){
-					/**
-					 * 
-					 */
-					private static final long serialVersionUID = 1L;
-					@SuppressWarnings("rawtypes")
-					Class[] columnTypes = new Class[] {
-						Object.class, Boolean.class, Boolean.class
-					};
-					@SuppressWarnings({ "unchecked", "rawtypes" })
-					public Class getColumnClass(int columnIndex) {
-						return columnTypes[columnIndex];
-					}
-					boolean[] columnEditables = new boolean[] {
-						false, true, true
-					};
-					public boolean isCellEditable(int row, int column) {
-						return columnEditables[column];
-					}
-				});
+				txtDate = new JTextField();
+				txtDate.setFont(new Font("Tahoma", Font.PLAIN, 16));
+				txtDate.setColumns(10);
+				txtDate.setText(dmy);
 				
 			}
 		});
