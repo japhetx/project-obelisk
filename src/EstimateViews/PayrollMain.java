@@ -267,13 +267,22 @@ public class PayrollMain extends JFrame {
 		);
 		
 		tblAttendance = new JTable();
+		tblAttendance.setShowHorizontalLines(true);
+		tblAttendance.setShowVerticalLines(true);
 		tblAttendance.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Workers Name", "AM", "PM"
 			}
-		));
+		) {
+			Class[] columnTypes = new Class[] {
+				String.class, Boolean.class, Boolean.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 		tblAttendance.getColumnModel().getColumn(0).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(1).setResizable(false);
 		tblAttendance.getColumnModel().getColumn(2).setResizable(false);
