@@ -24,9 +24,11 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.UIManager;
+import javax.swing.ButtonGroup;
 
 public class PayrollNewGUI extends JFrame {
 	private final JPanel pnlMenu = new JPanel();
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 	public static void main(String[] args) {
 		try {
@@ -80,36 +82,50 @@ public class PayrollNewGUI extends JFrame {
 		ctpMain.add(pnlMenu);
 		
 		JButton btnAttendance = new JButton("Attendance");
+		buttonGroup.add(btnAttendance);
 		
 		JButton btnPayroll = new JButton("Payroll");
+		buttonGroup.add(btnPayroll);
 		
 		JButton btnWorkers = new JButton("Workers");
+		buttonGroup.add(btnWorkers);
 		
 		JButton btnReport = new JButton("Report");
+		buttonGroup.add(btnReport);
 		GroupLayout gl_pnlMenu = new GroupLayout(pnlMenu);
 		gl_pnlMenu.setHorizontalGroup(
 			gl_pnlMenu.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_pnlMenu.createSequentialGroup()
-					.addContainerGap()
+					.addContainerGap(14, Short.MAX_VALUE)
 					.addGroup(gl_pnlMenu.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 199, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnAttendance, GroupLayout.PREFERRED_SIZE, 188, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+						.addGroup(gl_pnlMenu.createSequentialGroup()
+							.addComponent(btnAttendance, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+							.addGap(4))
+						.addGroup(Alignment.TRAILING, gl_pnlMenu.createSequentialGroup()
+							.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
+							.addGap(5)))
+					.addGap(10))
+				.addGroup(Alignment.LEADING, gl_pnlMenu.createSequentialGroup()
+					.addGap(14)
+					.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(15, Short.MAX_VALUE))
+				.addGroup(Alignment.LEADING, gl_pnlMenu.createSequentialGroup()
+					.addGap(14)
+					.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		gl_pnlMenu.setVerticalGroup(
 			gl_pnlMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMenu.createSequentialGroup()
-					.addGap(24)
+					.addGap(14)
 					.addComponent(btnAttendance, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(12)
 					.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(11)
 					.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGap(10)
 					.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(237, Short.MAX_VALUE))
+					.addContainerGap(232, Short.MAX_VALUE))
 		);
 		gl_pnlMenu.linkSize(SwingConstants.VERTICAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
 		gl_pnlMenu.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
