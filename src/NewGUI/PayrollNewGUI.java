@@ -25,10 +25,13 @@ import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.UIManager;
 import javax.swing.ButtonGroup;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class PayrollNewGUI extends JFrame {
+	
 	private final JPanel pnlMenu = new JPanel();
-	private final ButtonGroup buttonGroup = new ButtonGroup();
 	
 	public static void main(String[] args) {
 		try {
@@ -59,11 +62,44 @@ public class PayrollNewGUI extends JFrame {
 		setTitle("Payroll Management System");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1080, 650);
+		
+		//Top Menu Bar
+		JMenuBar mnbTopMenubar = new JMenuBar();
+		setJMenuBar(mnbTopMenubar);
+		
+		JMenu mnAccount = new JMenu("Account");
+		mnAccount.setBorderPainted(true);
+		mnbTopMenubar.add(mnAccount);
+		
+		JMenuItem mntmSwitchAccount = new JMenuItem("Switch Account");
+		mnAccount.add(mntmSwitchAccount);
+		
+		JMenuItem mntmLogOut = new JMenuItem("Log Out");
+		mnAccount.add(mntmLogOut);
+		
+		JMenu mnProject = new JMenu("Project");
+		mnbTopMenubar.add(mnProject);
+		
+		JMenuItem mntmSwitchProject = new JMenuItem("Switch Project");
+		mnProject.add(mntmSwitchProject);
+		
+		JMenu mnSettings = new JMenu("Settings");
+		mnbTopMenubar.add(mnSettings);
+		
+		JMenuItem mntmSettingsGoesHere = new JMenuItem("Settings Goes Here");
+		mnSettings.add(mntmSettingsGoesHere);
+		
+		JMenu mnAbout = new JMenu("Help");
+		mnbTopMenubar.add(mnAbout);
+		
+		JMenuItem mntmAbout = new JMenuItem("About");
+		mnAbout.add(mntmAbout);
 		JPanel ctpMain = new JPanel();
 		ctpMain.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(ctpMain);
 		ctpMain.setLayout(null);
 		
+		//User Info Panel
 		JPanel pnlUserInfo = new JPanel();
 		pnlUserInfo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		pnlUserInfo.setBounds(-6, -8, 218, 129);
@@ -78,20 +114,19 @@ public class PayrollNewGUI extends JFrame {
 		lblUserEmail.setBounds(22, 99, 173, 16);
 		pnlUserInfo.add(lblUserEmail);
 		pnlMenu.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		pnlMenu.setBounds(-3, 119, 215, 495);
+		pnlMenu.setBounds(-3, 119, 215, 472);
 		ctpMain.add(pnlMenu);
 		
+		//Menu Panel Buttons
 		JButton btnAttendance = new JButton("Attendance");
-		buttonGroup.add(btnAttendance);
-		
+	
 		JButton btnPayroll = new JButton("Payroll");
-		buttonGroup.add(btnPayroll);
 		
 		JButton btnWorkers = new JButton("Workers");
-		buttonGroup.add(btnWorkers);
 		
 		JButton btnReport = new JButton("Report");
-		buttonGroup.add(btnReport);
+		
+		//Group Layout
 		GroupLayout gl_pnlMenu = new GroupLayout(pnlMenu);
 		gl_pnlMenu.setHorizontalGroup(
 			gl_pnlMenu.createParallelGroup(Alignment.TRAILING)
@@ -134,7 +169,7 @@ public class PayrollNewGUI extends JFrame {
 		//Tabbed Panel
 		JTabbedPane tbpView = new JTabbedPane(JTabbedPane.LEFT);
 		tbpView.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		tbpView.setBounds(117, -7, 951, 623);
+		tbpView.setBounds(117, -6, 951, 597);
 		ctpMain.add(tbpView);
 		
 		//Attendance Panel
@@ -152,7 +187,6 @@ public class PayrollNewGUI extends JFrame {
 		//Report Panel
 		JPanel pnlReport = new JPanel();
 		tbpView.addTab("Report", null, pnlReport, null);
-		
 		
 	}
 
