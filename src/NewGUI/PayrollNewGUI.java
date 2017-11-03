@@ -9,7 +9,6 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.border.EtchedBorder;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.UIManager;
@@ -23,8 +22,6 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
-import java.awt.Dimension;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -64,6 +61,7 @@ public class PayrollNewGUI extends JFrame {
 	private JScrollPane scrollPane;
 	private JButton btnSave;
 	private JTable tblWorkersTable;
+	private JPanel panel;
 	
 	public static void main(String[] args) {
 		try {
@@ -209,7 +207,7 @@ public class PayrollNewGUI extends JFrame {
 		btnReport.setForeground(Color.WHITE);
 
 		
-		//Group Layout
+		//Group Layout Panel Menu
 		GroupLayout gl_pnlMenu = new GroupLayout(pnlMenu);
 		gl_pnlMenu.setHorizontalGroup(
 			gl_pnlMenu.createParallelGroup(Alignment.TRAILING)
@@ -255,6 +253,7 @@ public class PayrollNewGUI extends JFrame {
 		pnlAttendanceTitle.setBackground(new Color(76,175,80));
 		pnlAttendanceTitle.setBorder(null);
 		
+		//Attendance Main
 		pnlAttendanceMain = new JPanel();
 		
 		GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
@@ -278,6 +277,7 @@ public class PayrollNewGUI extends JFrame {
 		);
 		pnlAttendanceMain.setLayout(null);
 		
+		//Attendance Main Date
 		pnlDate = new JPanel();
 		pnlDate.setBackground(new Color(76,175,80));
 		pnlDate.setBounds(0, 0, 322, 471);
@@ -287,7 +287,7 @@ public class PayrollNewGUI extends JFrame {
 		lblJun.setFont(new Font("SansSerif", Font.PLAIN, 50));
 		lblJun.setForeground(Color.WHITE);
 		
-		lblNewLabel = new JLabel("30", SwingConstants.CENTER);
+		lblNewLabel = new JLabel("03", SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 200));
 		lblNewLabel.setForeground(Color.WHITE);
 		GroupLayout gl_pnlDate = new GroupLayout(pnlDate);
@@ -313,6 +313,7 @@ public class PayrollNewGUI extends JFrame {
 		);
 		pnlDate.setLayout(gl_pnlDate);
 		
+		//Attendance Main Workers Table
 		pnlWorkersTable = new JPanel();
 		pnlWorkersTable.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		pnlWorkersTable.setBounds(316, 0, 447, 471);
@@ -388,7 +389,7 @@ public class PayrollNewGUI extends JFrame {
 		scrollPane.setViewportView(tblWorkersTable);
 		
 		
-		
+		//Attendance Main Save
 		btnSave = new JButton("Save");
 		btnSave.setFont(new Font("SansSerif", Font.BOLD, 12));
 		btnSave.setBackground(new Color(46,125,50));
@@ -413,20 +414,30 @@ public class PayrollNewGUI extends JFrame {
 		pnlPayrollTitle.setBackground(new Color(244,67,54));
 		pnlPayrollTitle.setBorder(null);
 		
+		panel = new JPanel();
+		
 		GroupLayout gl_pnlPayrollTitle = new GroupLayout(pnlPayroll);
 		gl_pnlPayrollTitle.setHorizontalGroup(
-			gl_pnlPayrollTitle.createParallelGroup(Alignment.TRAILING)
-				.addGroup(Alignment.LEADING, gl_pnlPayrollTitle.createSequentialGroup()
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+			gl_pnlPayrollTitle.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlPayrollTitle.createSequentialGroup()
+					.addContainerGap(8, Short.MAX_VALUE)
 					.addComponent(pnlPayrollTitle, GroupLayout.PREFERRED_SIZE, 861, GroupLayout.PREFERRED_SIZE))
+				.addGroup(gl_pnlPayrollTitle.createSequentialGroup()
+					.addGap(60)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 762, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(47, Short.MAX_VALUE))
 		);
 		gl_pnlPayrollTitle.setVerticalGroup(
 			gl_pnlPayrollTitle.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlPayrollTitle.createSequentialGroup()
 					.addComponent(pnlPayrollTitle, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(537, Short.MAX_VALUE))
+					.addGap(33)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 462, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(44, Short.MAX_VALUE))
 		);
 		pnlPayrollTitle.setLayout(null);
+		
+		
 		
 		lblPayroll = new JLabel("Payroll");
 		lblPayroll.setForeground(Color.WHITE);
@@ -434,6 +445,21 @@ public class PayrollNewGUI extends JFrame {
 		lblPayroll.setBounds(33, 14, 126, 27);
 		pnlPayrollTitle.add(lblPayroll);
 		pnlPayroll.setLayout(gl_pnlPayrollTitle);
+		
+		GroupLayout gl_pnlPayroll = new GroupLayout(pnlPayroll);
+		gl_pnlPayroll.setHorizontalGroup(
+			gl_pnlPayroll.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_pnlPayroll.createSequentialGroup()
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addComponent(pnlPayrollTitle, GroupLayout.PREFERRED_SIZE, 876, GroupLayout.PREFERRED_SIZE))
+		);
+		gl_pnlPayroll.setVerticalGroup(
+			gl_pnlPayroll.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlPayroll.createSequentialGroup()
+					.addComponent(pnlPayrollTitle, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(539, Short.MAX_VALUE))
+		);
+		pnlAttendanceMain.setLayout(null);
 		
 		//Workers Panel
 		JPanel pnlWorkers = new JPanel();
