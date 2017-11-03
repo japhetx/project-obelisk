@@ -18,10 +18,7 @@ import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import java.awt.FlowLayout;
-<<<<<<< HEAD
-=======
 import net.miginfocom.swing.MigLayout;
->>>>>>> f6483ef4aebc19f83366cca3a4fd97c9e23af63b
 import java.awt.GridLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
