@@ -362,14 +362,20 @@ public class PayrollNewGUI extends JFrame {
 			}
 		) {
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, Boolean.class, Boolean.class
+				Object.class, Object.class, String.class, Boolean.class, Boolean.class
 			};
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, true, true
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		tblWorkersTable.getColumnModel().getColumn(0).setResizable(false);
-		tblWorkersTable.getColumnModel().getColumn(0).setPreferredWidth(31);
+		tblWorkersTable.getColumnModel().getColumn(0).setPreferredWidth(40);
 		tblWorkersTable.getColumnModel().getColumn(1).setResizable(false);
 		tblWorkersTable.getColumnModel().getColumn(1).setPreferredWidth(125);
 		tblWorkersTable.getColumnModel().getColumn(2).setResizable(false);
@@ -378,7 +384,7 @@ public class PayrollNewGUI extends JFrame {
 		tblWorkersTable.getColumnModel().getColumn(3).setPreferredWidth(30);
 		tblWorkersTable.getColumnModel().getColumn(4).setResizable(false);
 		tblWorkersTable.getColumnModel().getColumn(4).setPreferredWidth(30);
-		tblWorkersTable.getColumnModel().getColumn(4).setMinWidth(10);
+		tblWorkersTable.getColumnModel().getColumn(4).setMinWidth(30);
 		scrollPane.setViewportView(tblWorkersTable);
 		
 		
