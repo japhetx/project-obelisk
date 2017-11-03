@@ -1,8 +1,6 @@
 package NewGUI;	
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,19 +10,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.SoftBevelBorder;
-import javax.swing.border.BevelBorder;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import java.awt.FlowLayout;
-import net.miginfocom.swing.MigLayout;
-import java.awt.GridLayout;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import java.awt.Component;
 import javax.swing.UIManager;
-import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -36,8 +24,8 @@ import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Dimension;
-import java.awt.Frame;
 
+@SuppressWarnings("serial")
 public class PayrollNewGUI extends JFrame {
 	
 	private final JPanel pnlMenu = new JPanel();
