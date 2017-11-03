@@ -118,22 +118,22 @@ public class PayrollNewGUI extends JFrame {
 		//User Info Panel
 		JPanel pnlUserInfo = new JPanel();
 		pnlUserInfo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		pnlUserInfo.setBounds(-6, -8, 218, 166);
+		pnlUserInfo.setBounds(-6, -8, 218, 159);
 		ctpMain.add(pnlUserInfo);
 		pnlUserInfo.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Japhet Mert Obsioma");
-		lblUsername.setBounds(22, 117, 173, 16);
+		lblUsername.setBounds(22, 113, 173, 16);
 		pnlUserInfo.add(lblUsername);
 		
 		JLabel lblUserEmail = new JLabel("jpmrobsioma@gmail.com");
-		lblUserEmail.setBounds(22, 133, 173, 16);
+		lblUserEmail.setBounds(22, 129, 173, 16);
 		pnlUserInfo.add(lblUserEmail);
 		
-		JLabel lblUserPicture = new JLabel("User Picture");
+		JLabel lblUserPicture = new JLabel("J");
 		lblUserPicture.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		lblUserPicture.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserPicture.setBounds(22, 51, 101, 54);
+		lblUserPicture.setBounds(20, 31, 100, 75);
 		pnlUserInfo.add(lblUserPicture);
 		pnlMenu.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		pnlMenu.setBounds(-3, 119, 215, 472);
@@ -165,7 +165,7 @@ public class PayrollNewGUI extends JFrame {
 		gl_pnlMenu.setVerticalGroup(
 			gl_pnlMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMenu.createSequentialGroup()
-					.addGap(50)
+					.addGap(53)
 					.addComponent(btnAttendance, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
 					.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
@@ -173,7 +173,7 @@ public class PayrollNewGUI extends JFrame {
 					.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(173, Short.MAX_VALUE))
+					.addContainerGap(170, Short.MAX_VALUE))
 		);
 		gl_pnlMenu.linkSize(SwingConstants.VERTICAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
 		gl_pnlMenu.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
