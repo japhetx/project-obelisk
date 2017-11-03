@@ -25,6 +25,7 @@ import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Dimension;
 
+
 @SuppressWarnings("serial")
 public class PayrollNewGUI extends JFrame {
 	
@@ -71,9 +72,6 @@ public class PayrollNewGUI extends JFrame {
 	}
 
 	public PayrollNewGUI() {
-		setSize(new Dimension(1080, 650));
-		setMinimumSize(new Dimension(1080, 650));
-		setMaximumSize(new Dimension(1080, 650));
 		initComponents();
 		createEvents();
 	}
@@ -83,8 +81,9 @@ public class PayrollNewGUI extends JFrame {
 		//Main Panel
 		setTitle("Payroll Management System • Attendance");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setBounds(100, 100, 1080, 650);
-		setLocationRelativeTo(null); //Center Jframe when run
+		setLocationRelativeTo(null);
 		
 		//Top Menu Bar
 		JMenuBar mnbTopMenubar = new JMenuBar();
@@ -336,16 +335,16 @@ public class PayrollNewGUI extends JFrame {
 		
 		GroupLayout gl_pnlReportTitle = new GroupLayout(pnlReport);
 		gl_pnlReportTitle.setHorizontalGroup(
-				gl_pnlReportTitle.createParallelGroup(Alignment.TRAILING)
+			gl_pnlReportTitle.createParallelGroup(Alignment.TRAILING)
 				.addGroup(Alignment.LEADING, gl_pnlReportTitle.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 					.addComponent(pnlReportTitle, GroupLayout.PREFERRED_SIZE, 861, GroupLayout.PREFERRED_SIZE))
 		);
 		gl_pnlReportTitle.setVerticalGroup(
-				gl_pnlReportTitle.createParallelGroup(Alignment.LEADING)
-					.addGroup(gl_pnlReportTitle.createSequentialGroup()
-						.addComponent(pnlReportTitle, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-						.addContainerGap(537, Short.MAX_VALUE))
+			gl_pnlReportTitle.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlReportTitle.createSequentialGroup()
+					.addComponent(pnlReportTitle, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(537, Short.MAX_VALUE))
 		);
 		pnlReportTitle.setLayout(null);
 		
