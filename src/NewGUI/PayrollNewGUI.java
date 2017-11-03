@@ -24,6 +24,10 @@ import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import java.awt.Dimension;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 
 @SuppressWarnings("serial")
@@ -52,6 +56,14 @@ public class PayrollNewGUI extends JFrame {
 	private JLabel lblWorkers;
 	private JPanel pnlReportTitle;
 	private JLabel lblReport;
+	private JPanel pnlAttendanceMain;
+	private JPanel pnlDate;
+	private JLabel lblJun;
+	private JLabel lblNewLabel;
+	private JPanel pnlWorkersTable;
+	private JScrollPane scrollPane;
+	private JButton btnSave;
+	private JTable tblWorkersTable;
 	
 	public static void main(String[] args) {
 		try {
@@ -72,8 +84,10 @@ public class PayrollNewGUI extends JFrame {
 	}
 
 	public PayrollNewGUI() {
+		
 		initComponents();
 		createEvents();
+		
 	}
 
 	private void initComponents() {
@@ -241,19 +255,140 @@ public class PayrollNewGUI extends JFrame {
 		pnlAttendanceTitle.setBackground(new Color(76,175,80));
 		pnlAttendanceTitle.setBorder(null);
 		
+		pnlAttendanceMain = new JPanel();
+		
 		GroupLayout gl_pnlAttendance = new GroupLayout(pnlAttendance);
 		gl_pnlAttendance.setHorizontalGroup(
-			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_pnlAttendance.createSequentialGroup()
+			gl_pnlAttendance.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_pnlAttendance.createSequentialGroup()
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-					.addComponent(pnlAttendanceTitle, GroupLayout.PREFERRED_SIZE, 876, GroupLayout.PREFERRED_SIZE))
+					.addGroup(gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
+						.addComponent(pnlAttendanceTitle, GroupLayout.PREFERRED_SIZE, 876, GroupLayout.PREFERRED_SIZE)
+						.addGroup(Alignment.TRAILING, gl_pnlAttendance.createSequentialGroup()
+							.addComponent(pnlAttendanceMain, GroupLayout.PREFERRED_SIZE, 763, GroupLayout.PREFERRED_SIZE)
+							.addGap(56))))
 		);
 		gl_pnlAttendance.setVerticalGroup(
 			gl_pnlAttendance.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlAttendance.createSequentialGroup()
 					.addComponent(pnlAttendanceTitle, GroupLayout.PREFERRED_SIZE, 56, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(537, Short.MAX_VALUE))
+					.addGap(30)
+					.addComponent(pnlAttendanceMain, GroupLayout.PREFERRED_SIZE, 471, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(38, Short.MAX_VALUE))
 		);
+		pnlAttendanceMain.setLayout(null);
+		
+		pnlDate = new JPanel();
+		pnlDate.setBackground(new Color(76,175,80));
+		pnlDate.setBounds(0, 0, 322, 471);
+		pnlAttendanceMain.add(pnlDate);
+		
+		lblJun = new JLabel("November", SwingConstants.CENTER);
+		lblJun.setFont(new Font("SansSerif", Font.PLAIN, 50));
+		lblJun.setForeground(Color.WHITE);
+		
+		lblNewLabel = new JLabel("30", SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD, 200));
+		lblNewLabel.setForeground(Color.WHITE);
+		GroupLayout gl_pnlDate = new GroupLayout(pnlDate);
+		gl_pnlDate.setHorizontalGroup(
+			gl_pnlDate.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDate.createSequentialGroup()
+					.addGap(17)
+					.addGroup(gl_pnlDate.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblJun, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)
+						.addGroup(gl_pnlDate.createSequentialGroup()
+							.addGap(33)
+							.addComponent(lblNewLabel)))
+					.addContainerGap(17, Short.MAX_VALUE))
+		);
+		gl_pnlDate.setVerticalGroup(
+			gl_pnlDate.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDate.createSequentialGroup()
+					.addGap(68)
+					.addComponent(lblJun)
+					.addGap(17)
+					.addComponent(lblNewLabel)
+					.addContainerGap(69, Short.MAX_VALUE))
+		);
+		pnlDate.setLayout(gl_pnlDate);
+		
+		pnlWorkersTable = new JPanel();
+		pnlWorkersTable.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		pnlWorkersTable.setBounds(316, 0, 447, 471);
+		pnlAttendanceMain.add(pnlWorkersTable);
+		pnlWorkersTable.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(19, 25, 418, 402);
+		pnlWorkersTable.add(scrollPane);
+		
+		tblWorkersTable = new JTable();
+		tblWorkersTable.setShowHorizontalLines(true);
+		tblWorkersTable.setShowVerticalLines(true);
+		tblWorkersTable.setBorder(new LineBorder(Color.LIGHT_GRAY));
+		tblWorkersTable.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"No.", "Workers Name", "Position", "AM", "PM"
+			}
+		) {
+			Class[] columnTypes = new Class[] {
+				Integer.class, String.class, String.class, Boolean.class, Boolean.class
+			};
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
+		tblWorkersTable.getColumnModel().getColumn(0).setResizable(false);
+		tblWorkersTable.getColumnModel().getColumn(0).setPreferredWidth(31);
+		tblWorkersTable.getColumnModel().getColumn(1).setResizable(false);
+		tblWorkersTable.getColumnModel().getColumn(1).setPreferredWidth(125);
+		tblWorkersTable.getColumnModel().getColumn(2).setResizable(false);
+		tblWorkersTable.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tblWorkersTable.getColumnModel().getColumn(3).setResizable(false);
+		tblWorkersTable.getColumnModel().getColumn(3).setPreferredWidth(30);
+		tblWorkersTable.getColumnModel().getColumn(4).setResizable(false);
+		tblWorkersTable.getColumnModel().getColumn(4).setPreferredWidth(30);
+		tblWorkersTable.getColumnModel().getColumn(4).setMinWidth(10);
+		scrollPane.setViewportView(tblWorkersTable);
+		
+		
+		
+		btnSave = new JButton("Save");
+		btnSave.setFont(new Font("SansSerif", Font.BOLD, 12));
+		btnSave.setBackground(new Color(46,125,50));
+		btnSave.setForeground(Color.WHITE);
+		btnSave.setBounds(347, 437, 90, 28);
+		pnlWorkersTable.add(btnSave);
 		pnlAttendanceTitle.setLayout(null);
 		
 		lblAttendance = new JLabel("Attendance");
@@ -356,7 +491,6 @@ public class PayrollNewGUI extends JFrame {
 		pnlReportTitle.add(lblReport);
 		pnlReport.setLayout(gl_pnlReportTitle);
 		
-		
 	}
 
 	private void createEvents() {
@@ -390,7 +524,5 @@ public class PayrollNewGUI extends JFrame {
 			}
 		});
 		
-		
 	}
-	
 }
