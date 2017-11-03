@@ -125,34 +125,35 @@ public class PayrollNewGUI extends JFrame {
 		JPanel pnlUserInfo = new JPanel();
 		pnlUserInfo.setBackground(new Color(238,238,238));
 		pnlUserInfo.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		pnlUserInfo.setBounds(-6, -8, 218, 159);
+		pnlUserInfo.setBounds(-6, -8, 218, 196);
 		ctpMain.add(pnlUserInfo);
 		pnlUserInfo.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Japhet Mert Obsioma");
 		lblUsername.setBackground(Color.DARK_GRAY);
 		lblUsername.setForeground(Color.DARK_GRAY);
-		lblUsername.setBounds(29, 116, 173, 16);
+		lblUsername.setBounds(31, 154, 173, 16);
 		pnlUserInfo.add(lblUsername);
 		
 		JLabel lblUserEmail = new JLabel("jpmrobsioma@gmail.com");
 		lblUserEmail.setBackground(Color.LIGHT_GRAY);
 		lblUserEmail.setForeground(Color.GRAY);
-		lblUserEmail.setBounds(29, 132, 173, 16);
+		lblUserEmail.setBounds(31, 170, 173, 16);
 		pnlUserInfo.add(lblUserEmail);
 		
-		JLabel lblUserPicture = new JLabel("J");
+		JLabel lblUserPicture = new JLabel("");
+		lblUserPicture.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/UserPhoto_Men.png")));
 		lblUserPicture.setBackground(Color.LIGHT_GRAY);
 		lblUserPicture.setForeground(Color.GRAY);
-		lblUserPicture.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lblUserPicture.setBorder(new LineBorder(Color.LIGHT_GRAY));
 		lblUserPicture.setHorizontalAlignment(SwingConstants.CENTER);
-		lblUserPicture.setBounds(29, 36, 100, 75);
+		lblUserPicture.setBounds(31, 27, 120, 120);
 		pnlUserInfo.add(lblUserPicture);
 		
 		//Menu Panel
 		pnlMenu.setBackground(new Color(238,238,238));
 		pnlMenu.setBorder(new LineBorder(Color.LIGHT_GRAY));
-		pnlMenu.setBounds(-3, 149, 215, 442);
+		pnlMenu.setBounds(-3, 187, 215, 404);
 		ctpMain.add(pnlMenu);
 		
 		//Menu Panel Buttons
@@ -162,7 +163,7 @@ public class PayrollNewGUI extends JFrame {
 		btnAttendance.setMargin(new Insets(0, 10, 0, 0));
 		btnAttendance.setHorizontalAlignment(SwingConstants.LEADING);
 		btnAttendance.setIconTextGap(20);
-		btnAttendance.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/check-mark.png")));
+		btnAttendance.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/attendance.png")));
 		btnAttendance.setBackground(new Color(46,125,50));
 		btnAttendance.setForeground(Color.WHITE);
 	
@@ -171,7 +172,7 @@ public class PayrollNewGUI extends JFrame {
 		btnPayroll.setMargin(new Insets(0, 10, 0, 0));
 		btnPayroll.setHorizontalAlignment(SwingConstants.LEADING);
 		btnPayroll.setIconTextGap(20);
-		btnPayroll.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/dollar-symbol.png")));
+		btnPayroll.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/payroll.png")));
 		btnPayroll.setBackground(new Color(198,40,40));
 		btnPayroll.setForeground(Color.WHITE);
 		
@@ -180,7 +181,7 @@ public class PayrollNewGUI extends JFrame {
 		btnWorkers.setMargin(new Insets(0, 10, 0, 0));
 		btnWorkers.setHorizontalAlignment(SwingConstants.LEADING);
 		btnWorkers.setIconTextGap(20);
-		btnWorkers.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/network.png")));
+		btnWorkers.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/workers.png")));
 		btnWorkers.setBackground(new Color(21,101,192));
 		btnWorkers.setForeground(Color.WHITE);
 		
@@ -189,7 +190,7 @@ public class PayrollNewGUI extends JFrame {
 		btnReport.setMargin(new Insets(0, 10, 0, 0));
 		btnReport.setHorizontalAlignment(SwingConstants.LEADING);
 		btnReport.setIconTextGap(20);
-		btnReport.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/contract.png")));
+		btnReport.setIcon(new ImageIcon(PayrollNewGUI.class.getResource("/resources/report.png")));
 		btnReport.setBackground(new Color(40,53,147));
 		btnReport.setForeground(Color.WHITE);
 
