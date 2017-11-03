@@ -28,10 +28,26 @@ import javax.swing.ButtonGroup;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PayrollNewGUI extends JFrame {
 	
 	private final JPanel pnlMenu = new JPanel();
+	private JMenu mnAccount;
+	private JMenu mnProject;
+	private JMenu mnSettings;
+	private JMenu mnAbout;
+	private JMenuItem mntmSwitchAccount;
+	private JMenuItem mntmLogOut;
+	private JMenuItem mntmSwitchProject;
+	private JMenuItem mntmSettingsGoesHere;
+	private JMenuItem mntmAbout;
+	private JButton btnAttendance;
+	private JButton btnReport;
+	private JButton btnPayroll;
+	private JButton btnWorkers;
+	private JTabbedPane tbpView;
 	
 	public static void main(String[] args) {
 		try {
@@ -67,32 +83,32 @@ public class PayrollNewGUI extends JFrame {
 		JMenuBar mnbTopMenubar = new JMenuBar();
 		setJMenuBar(mnbTopMenubar);
 		
-		JMenu mnAccount = new JMenu("Account");
+		mnAccount = new JMenu("Account");
 		mnAccount.setBorderPainted(true);
 		mnbTopMenubar.add(mnAccount);
 		
-		JMenuItem mntmSwitchAccount = new JMenuItem("Switch Account");
+		mntmSwitchAccount = new JMenuItem("Switch Account");
 		mnAccount.add(mntmSwitchAccount);
 		
-		JMenuItem mntmLogOut = new JMenuItem("Log Out");
+		mntmLogOut = new JMenuItem("Log Out");
 		mnAccount.add(mntmLogOut);
 		
-		JMenu mnProject = new JMenu("Project");
+		mnProject = new JMenu("Project");
 		mnbTopMenubar.add(mnProject);
 		
-		JMenuItem mntmSwitchProject = new JMenuItem("Switch Project");
+		mntmSwitchProject = new JMenuItem("Switch Project");
 		mnProject.add(mntmSwitchProject);
 		
-		JMenu mnSettings = new JMenu("Settings");
+		mnSettings = new JMenu("Settings");
 		mnbTopMenubar.add(mnSettings);
 		
-		JMenuItem mntmSettingsGoesHere = new JMenuItem("Settings Goes Here");
+		mntmSettingsGoesHere = new JMenuItem("Settings Goes Here");
 		mnSettings.add(mntmSettingsGoesHere);
 		
-		JMenu mnAbout = new JMenu("Help");
+		mnAbout = new JMenu("Help");
 		mnbTopMenubar.add(mnAbout);
 		
-		JMenuItem mntmAbout = new JMenuItem("About");
+		mntmAbout = new JMenuItem("About");
 		mnAbout.add(mntmAbout);
 		JPanel ctpMain = new JPanel();
 		ctpMain.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -102,57 +118,54 @@ public class PayrollNewGUI extends JFrame {
 		//User Info Panel
 		JPanel pnlUserInfo = new JPanel();
 		pnlUserInfo.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		pnlUserInfo.setBounds(-6, -8, 218, 129);
+		pnlUserInfo.setBounds(-6, -8, 218, 166);
 		ctpMain.add(pnlUserInfo);
 		pnlUserInfo.setLayout(null);
 		
 		JLabel lblUsername = new JLabel("Japhet Mert Obsioma");
-		lblUsername.setBounds(22, 83, 173, 16);
+		lblUsername.setBounds(22, 117, 173, 16);
 		pnlUserInfo.add(lblUsername);
 		
 		JLabel lblUserEmail = new JLabel("jpmrobsioma@gmail.com");
-		lblUserEmail.setBounds(22, 99, 173, 16);
+		lblUserEmail.setBounds(22, 133, 173, 16);
 		pnlUserInfo.add(lblUserEmail);
+		
+		JLabel lblUserPicture = new JLabel("User Picture");
+		lblUserPicture.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
+		lblUserPicture.setHorizontalAlignment(SwingConstants.CENTER);
+		lblUserPicture.setBounds(22, 51, 101, 54);
+		pnlUserInfo.add(lblUserPicture);
 		pnlMenu.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		pnlMenu.setBounds(-3, 119, 215, 472);
 		ctpMain.add(pnlMenu);
 		
 		//Menu Panel Buttons
-		JButton btnAttendance = new JButton("Attendance");
+		btnAttendance = new JButton("Attendance");
 	
-		JButton btnPayroll = new JButton("Payroll");
+		btnPayroll = new JButton("Payroll");
 		
-		JButton btnWorkers = new JButton("Workers");
+		btnWorkers = new JButton("Workers");
 		
-		JButton btnReport = new JButton("Report");
+		btnReport = new JButton("Report");
 		
 		//Group Layout
 		GroupLayout gl_pnlMenu = new GroupLayout(pnlMenu);
 		gl_pnlMenu.setHorizontalGroup(
-			gl_pnlMenu.createParallelGroup(Alignment.TRAILING)
+			gl_pnlMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMenu.createSequentialGroup()
-					.addContainerGap(14, Short.MAX_VALUE)
+					.addGap(14)
 					.addGroup(gl_pnlMenu.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_pnlMenu.createSequentialGroup()
+						.addGroup(gl_pnlMenu.createParallelGroup(Alignment.TRAILING)
 							.addComponent(btnAttendance, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
-							.addGap(4))
-						.addGroup(Alignment.TRAILING, gl_pnlMenu.createSequentialGroup()
-							.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE)
-							.addGap(5)))
-					.addGap(10))
-				.addGroup(Alignment.LEADING, gl_pnlMenu.createSequentialGroup()
-					.addGap(14)
-					.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+							.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(15, Short.MAX_VALUE))
-				.addGroup(Alignment.LEADING, gl_pnlMenu.createSequentialGroup()
-					.addGap(14)
-					.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		gl_pnlMenu.setVerticalGroup(
 			gl_pnlMenu.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlMenu.createSequentialGroup()
-					.addGap(14)
+					.addGap(50)
 					.addComponent(btnAttendance, GroupLayout.PREFERRED_SIZE, 53, GroupLayout.PREFERRED_SIZE)
 					.addGap(12)
 					.addComponent(btnPayroll, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
@@ -160,16 +173,16 @@ public class PayrollNewGUI extends JFrame {
 					.addComponent(btnWorkers, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
 					.addGap(10)
 					.addComponent(btnReport, GroupLayout.PREFERRED_SIZE, 37, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(232, Short.MAX_VALUE))
+					.addContainerGap(173, Short.MAX_VALUE))
 		);
 		gl_pnlMenu.linkSize(SwingConstants.VERTICAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
 		gl_pnlMenu.linkSize(SwingConstants.HORIZONTAL, new Component[] {btnAttendance, btnPayroll, btnWorkers, btnReport});
 		pnlMenu.setLayout(gl_pnlMenu);
 		
 		//Tabbed Panel
-		JTabbedPane tbpView = new JTabbedPane(JTabbedPane.LEFT);
+		tbpView = new JTabbedPane(JTabbedPane.LEFT);
 		tbpView.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		tbpView.setBounds(117, -6, 951, 597);
+		tbpView.setBounds(113, -6, 955, 597);
 		ctpMain.add(tbpView);
 		
 		//Attendance Panel
@@ -191,7 +204,29 @@ public class PayrollNewGUI extends JFrame {
 	}
 
 	private void createEvents() {
+		btnAttendance.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tbpView.setSelectedIndex(0);
+			}
+		});
 		
+		btnPayroll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tbpView.setSelectedIndex(1);
+			}
+		});
+		
+		btnWorkers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tbpView.setSelectedIndex(2);
+			}
+		});
+		
+		btnReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tbpView.setSelectedIndex(3);
+			}
+		});
 		
 	}
 }
